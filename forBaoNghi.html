@@ -1,127 +1,211 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Chúc Bảo Nghi mau hết bệnh 🌸</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #ffe0ec, #ffd6e0);
-      font-family: 'Poppins', sans-serif;
-      text-align: center;
-      transition: background 2s ease;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phở cho Bảo Nghi 🍜</title>
+<style>
+  body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #ffe6f2, #e6f7ff, #fff0f5);
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
+  }
 
-    h1 {
-      font-size: 3em;
-      color: #fff;
-      text-shadow: 0 0 15px rgba(255,255,255,0.9);
-      animation: fadeIn 2s ease-in-out;
-      display: none;
-    }
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 
-    .flower {
-      color: #ff9ebb;
-      font-size: 3.5em;
-      animation: bloom 2s infinite alternate;
-      display: none;
-    }
+  h1 {
+    color: #ff7aa2;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255,150,180,0.4);
+  }
 
-    button {
-      background: #ff8fa3;
-      border: none;
-      color: #fff;
-      padding: 15px 40px;
-      font-size: 1.3em;
-      border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(255, 107, 129, 0.5);
-      transition: all 0.3s ease;
-    }
+  p {
+    color: #ff9eb5;
+    font-size: 1.2rem;
+  }
 
-    button:hover {
-      background: #ff6b81;
-      transform: scale(1.1);
-    }
+  .intro {
+    margin-top: 180px;
+  }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+  #inviteBtn {
+    background: linear-gradient(90deg, #ffafcc, #ffc6ff);
+    color: white;
+    border: none;
+    font-size: 18px;
+    padding: 16px 34px;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(255,175,204,0.5);
+    transition: all 0.3s;
+  }
+  #inviteBtn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(255, 170, 200, 0.8);
+  }
 
-    @keyframes bloom {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.3) rotate(10deg); }
-    }
+  .menu {
+    display: none;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 60px;
+    opacity: 0;
+    animation: fadeIn 1.2s ease forwards;
+  }
 
-    .petal {
-      position: absolute;
-      top: -50px;
-      font-size: 24px;
-      opacity: 0.9;
-      animation: fall linear forwards;
-    }
+  .card {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    width: 270px;
+    padding: 18px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    backdrop-filter: blur(6px);
+  }
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 22px rgba(255, 150, 180, 0.3);
+  }
+  .card img {
+    width: 100%;
+    border-radius: 16px;
+  }
+  .card h3 {
+    margin: 12px 0;
+    color: #ff7f9d;
+  }
+  button {
+    background-color: #ffb6c1;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 14px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  button:hover {
+    background-color: #ff94b3;
+  }
 
-    @keyframes fall {
-      to {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
+  .message {
+    display: none;
+    font-size: 18px;
+    color: #e67a7a;
+    margin-top: 30px;
+    animation: fadeIn 1s ease;
+  }
 
-    p {
-      font-size: 1.3em;
-      color: #fff;
-      margin-top: 10px;
-      display: none;
-      animation: fadeIn 2s ease-in-out;
-      text-shadow: 0 0 10px rgba(255,255,255,0.7);
-    }
-  </style>
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  /* 💖 Hiệu ứng tim bay */
+  .heart {
+    position: fixed;
+    color: #ff7aa2;
+    animation: floatUp 3s ease-in infinite;
+    font-size: 22px;
+    opacity: 0;
+  }
+  @keyframes floatUp {
+    0% {transform: translateY(0); opacity: 1;}
+    100% {transform: translateY(-200px); opacity: 0;}
+  }
+
+  /* 🌸 Hiệu ứng ánh sáng lung linh */
+  .glow {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255,192,203,0.4), transparent 70%);
+    border-radius: 50%;
+    top: -100px;
+    left: -100px;
+    animation: moveGlow 15s infinite alternate ease-in-out;
+    pointer-events: none;
+  }
+
+  @keyframes moveGlow {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50vw, 50vh); }
+  }
+</style>
 </head>
 <body>
-  <button id="startBtn">🌸 Bạn hãy nhấn vào đây đi 💕</button>
-  <h1 id="message">🌸 Chúc bạn mau hết bệnh nha 🌸</h1>
-  <div class="flower" id="flower">🌸</div>
-  <p id="note">Ăn uống, uống thuốc đầy đủ nhaaa 💖<br>Từ một người bạn mới gửi đến <b>Bảo Nghi 🌷</b></p>
 
-  <!-- Nhạc nền -->
-  <audio id="music" preload="auto">
-    <source src="https://cdn.pixabay.com/download/audio/2023/01/12/audio_7d06e9a59c.mp3?filename=soft-piano-melody-13589.mp3" type="audio/mp3">
-  </audio>
+  <div class="glow"></div>
+
+  <div class="intro" id="intro">
+    <h1>💖 Xin chào Bảo Nghi 💖</h1>
+    <p>Hôm nay Khánh mời cậu ăn phở nha 🍜</p>
+    <button id="inviteBtn" onclick="showMenu()">Bảo Nghi vào đây chọn món Phở nha</button>
+  </div>
+
+  <div class="menu" id="menu">
+    <h1>🍜 Cửa hàng Phở dành cho Bảo Nghi 💕</h1>
+    <div style="display:flex;justify-content:center;gap:25px;flex-wrap:wrap;">
+      <div class="card">
+        <img src="https://imgs.search.brave.com/ZP-0lD0wvrWZH0tIXpEJbk8_bY0ChsPDo5g7Ie4558k/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA3LzA5LzI1LzQ0/LzM2MF9GXzcwOTI1/NDQ1NF9aSE15RG5V/UkdZRENuall1MDE0/bVZqbXFDR1JGQlFv/Zy5qcGc" alt="Phở bò">
+        <h3>Phở Bò</h3>
+        <button onclick="order(this)">Đặt món</button>
+      </div>
+      <div class="card">
+        <img src="https://imgs.search.brave.com/8Unwu650AZVThHjxwyd9GBNxCkUUHimg9HlS_L3SZNs/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9yZXMu/Y2xvdWRpbmFyeS5j/b20vdGhlLWluZmF0/dWF0aW9uL2ltYWdl/L3VwbG9hZC9jX2Zp/bGwsd18zODQwLGFy/XzQ6MyxnX2NlbnRl/cixmX2F1dG8vaW1h/Z2VzL1Bob19HYV9W/YW5nXzNfcmV0b3Vj/aGVkX2RvbHdsdQ" alt="Phở gà">
+        <h3>Phở Gà</h3>
+        <button onclick="order(this)">Đặt món</button>
+      </div>
+      <div class="card">
+        <img src="https://imgs.search.brave.com/o81BTMuYZS1mm4eeWWyRpwWu6Q0PIcpU-xKXmC2sIIU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9zb3Vw/LXBoby1iby1kYXJr/LXN0b25lLXRhYmxl/LXZpZXRuYW1lc2Ut/Y3Vpc2luZS1zb3Vw/LXBoby1iby1kYXJr/LXN0b25lLXRhYmxl/LXZpZXRuYW1lc2Ut/Y3Vpc2luZS0xNzk2/Mjg0NDAuanBn" alt="Phở tái">
+        <h3>Phở Tái</h3>
+        <button onclick="order(this)">Đặt món</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="msg" class="message">
+    🍜 Món ăn đã được gửi đến Khánh — món phở đang chuẩn bị cho Bảo Nghi đó nha 💕
+  </div>
 
   <script>
-    const button = document.getElementById('startBtn');
-    const message = document.getElementById('message');
-    const flower = document.getElementById('flower');
-    const note = document.getElementById('note');
-    const music = document.getElementById('music');
-
-    function createPetal() {
-      const petal = document.createElement('div');
-      petal.classList.add('petal');
-      petal.textContent = '🌸';
-      petal.style.left = Math.random() * 100 + 'vw';
-      petal.style.animationDuration = (3 + Math.random() * 5) + 's';
-      document.body.appendChild(petal);
-      setTimeout(() => petal.remove(), 8000);
+    function showMenu() {
+      document.getElementById("intro").style.display = "none";
+      const menu = document.getElementById("menu");
+      menu.style.display = "flex";
+      createHearts();
     }
 
-    button.addEventListener('click', () => {
-      button.style.display = 'none';
-      message.style.display = 'block';
-      flower.style.display = 'block';
-      note.style.display = 'block';
-      document.body.style.background = 'linear-gradient(135deg, #ffcad4, #f6d5e0)';
-      setInterval(createPetal, 300);
-      music.play();
-    });
+    function order(btn) {
+      btn.disabled = true;
+      btn.innerText = "Đang chuẩn bị...";
+      document.getElementById("msg").style.display = "block";
+      createHearts();
+    }
+
+    function createHearts() {
+      for (let i = 0; i < 12; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (2 + Math.random() * 2) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 3000);
+      }
+    }
   </script>
+
 </body>
 </html>
