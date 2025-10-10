@@ -107,11 +107,6 @@
     animation: fadeIn 1s ease;
   }
 
-  @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-
   /* 💖 Hiệu ứng tim bay */
   .heart {
     position: fixed;
@@ -142,6 +137,23 @@
     0% { transform: translate(0, 0); }
     100% { transform: translate(50vw, 50vh); }
   }
+
+  /* 🌟 Thông báo lớn giữa màn hình */
+  .big-message {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(255, 245, 250, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: #ff6b91;
+    font-weight: bold;
+    z-index: 1000;
+    flex-direction: column;
+    animation: fadeIn 0.8s ease forwards;
+  }
 </style>
 </head>
 <body>
@@ -158,25 +170,25 @@
     <h1>🍜 Cửa hàng Phở dành cho Bảo Nghii 💕</h1>
     <div style="display:flex;justify-content:center;gap:25px;flex-wrap:wrap;">
       <div class="card">
-        <img src="https://imgs.search.brave.com/ZP-0lD0wvrWZH0tIXpEJbk8_bY0ChsPDo5g7Ie4558k/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA3LzA5LzI1LzQ0/LzM2MF9GXzcwOTI1/NDQ1NF9aSE15RG5V/UkdZRENuall1MDE0/bVZqbXFDR1JGQlFv/Zy5qcGc" alt="Phở bò">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Pho-Beef-Noodles-2008.jpg/640px-Pho-Beef-Noodles-2008.jpg" alt="Phở bò">
         <h3>Phở Bò</h3>
         <button onclick="order(this)">Đặt món</button>
       </div>
       <div class="card">
-        <img src="https://imgs.search.brave.com/8Unwu650AZVThHjxwyd9GBNxCkUUHimg9HlS_L3SZNs/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9yZXMu/Y2xvdWRpbmFyeS5j/b20vdGhlLWluZmF0/dWF0aW9uL2ltYWdl/L3VwbG9hZC9jX2Zp/bGwsd18zODQwLGFy/XzQ6MyxnX2NlbnRl/cixmX2F1dG8vaW1h/Z2VzL1Bob19HYV9W/YW5nXzNfcmV0b3Vj/aGVkX2RvbHdsdQ" alt="Phở gà">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Pho_ga.jpg" alt="Phở gà">
         <h3>Phở Gà</h3>
         <button onclick="order(this)">Đặt món</button>
       </div>
       <div class="card">
-        <img src="https://imgs.search.brave.com/o81BTMuYZS1mm4eeWWyRpwWu6Q0PIcpU-xKXmC2sIIU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9zb3Vw/LXBoby1iby1kYXJr/LXN0b25lLXRhYmxl/LXZpZXRuYW1lc2Ut/Y3Vpc2luZS1zb3Vw/LXBoby1iby1kYXJr/LXN0b25lLXRhYmxl/LXZpZXRuYW1lc2Ut/Y3Vpc2luZS0xNzk2/Mjg0NDAuanBn" alt="Phở tái">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Pho_tai_ha_noi.jpg" alt="Phở tái">
         <h3>Phở Tái</h3>
         <button onclick="order(this)">Đặt món</button>
       </div>
     </div>
   </div>
 
-  <div id="msg" class="message">
-    🍜 Món ăn đã được gửi đến Khánhh — món phở đang chuẩn bị cho Bảo Nghi đó nhaaa 💕
+  <div id="bigMsg" class="big-message">
+    🍜 Món ăn đã được gửi đến Khánh<br>💖 Khi nào có dịp mình mời bạn ăn nha 💕
   </div>
 
   <script>
@@ -190,7 +202,7 @@
     function order(btn) {
       btn.disabled = true;
       btn.innerText = "Đang chuẩn bị...";
-      document.getElementById("msg").style.display = "block";
+      document.getElementById("bigMsg").style.display = "flex"; // Hiện thông báo lớn
       createHearts();
     }
 
